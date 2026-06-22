@@ -1,0 +1,23 @@
+{
+  "folders": [
+    {
+      "path": "."
+    }
+  ],
+  "settings": {
+    "editor.formatOnSave": true,
+    "typescript.tsdk": "node_modules/typescript/lib",
+    "files.exclude": {
+      "**/.next": true,
+      "**/node_modules": true
+    }
+  },
+  "extensions": {
+    "recommendations": [
+      "saoudrizwan.claude-dev",
+      "dbaeumer.vscode-eslint",
+      "esbenp.prettier-vscode",
+      "bradlc.vscode-tailwindcss"
+    ]
+  }
+}

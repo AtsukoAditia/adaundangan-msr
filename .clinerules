@@ -1,0 +1,82 @@
+# AdaUndangan — CLINE Rules
+
+## Identitas
+- Nama aplikasi dan brand adalah `AdaUndangan`.
+- Nama package adalah `adaundangan`.
+- Jangan menggunakan nama brand lain dalam source code, metadata, contoh, dan dokumentasi.
+- UI dan dokumentasi pengguna menggunakan Bahasa Indonesia.
+- Nama variabel, fungsi, type, interface, dan file kode menggunakan Bahasa Inggris.
+
+## Proses kerja
+- Baca `PROJECT_CONTEXT.md`, `TASKS.md`, dan seluruh `docs/` sebelum perubahan besar.
+- Perbarui `TASKS.md` selama pengerjaan.
+- Catat keputusan arsitektur di `PROJECT_CONTEXT.md`.
+- Jangan berhenti pada pseudocode, struktur kosong, atau mockup.
+- Jangan menyatakan selesai sebelum lint, typecheck, test, dan build diperiksa.
+
+## Keselamatan workspace
+- Jangan menghapus file pengguna tanpa alasan kuat.
+- Jangan menjalankan `rm -rf`, `git reset --hard`, `git clean -fd`, force push, atau perintah destruktif.
+- Jangan menampilkan isi `.env`, private key, token, atau service-account JSON.
+- Jangan membuat proyek Next.js bersarang jika root workspace adalah proyek.
+- Jangan mengganti arsitektur tanpa memperbarui dokumentasi.
+
+## Stack
+- Next.js App Router, React, TypeScript strict, Tailwind CSS.
+- Server Component sebagai default.
+- Client Component hanya untuk state, event, browser API, audio, form, modal, dan animasi interaktif.
+- React Hook Form + Zod untuk form.
+- Google APIs hanya dari server.
+- Vitest untuk unit test; Playwright bila stabil.
+- npm sebagai package manager.
+
+## Larangan
+- Tanpa CMS, WordPress, Firebase, Supabase, database SQL, MongoDB, dan jQuery.
+- Jangan gunakan static export karena API route diperlukan.
+- Jangan simpan secret di source code atau prefix `NEXT_PUBLIC_`.
+- Jangan gunakan `dangerouslySetInnerHTML` untuk input pengguna.
+- Jangan merender ucapan sebagai HTML.
+- Jangan menghapus test agar build lolos.
+- Jangan menonaktifkan TypeScript strict.
+- Hindari `any`; jika terpaksa, jelaskan alasannya.
+
+## Arsitektur data
+- Data undangan berada di `src/data/invitations/`.
+- Satu pasangan menggunakan satu file konfigurasi.
+- Gunakan type/schema kuat dan ISO datetime dengan timezone offset.
+- Gunakan `getInvitationBySlug` dan `notFound()`.
+- Section opsional hanya muncul jika aktif dan datanya tersedia.
+- Theme tidak boleh menduplikasi business logic.
+
+## Brand dan UI
+- Burgundy `#7B1D2A`, Gold `#D4AF37`, Ivory `#FFFDF7`.
+- Mobile-first, aksesibel, dan tanpa horizontal overflow.
+- Hormati `prefers-reduced-motion`.
+- Sediakan fallback text logo `AdaUndangan`.
+
+## RSVP dan keamanan
+- Validasi client dan server.
+- Nilai `Approved` ditentukan server dan default `FALSE`.
+- Gunakan honeypot, batas panjang input, dan batas jumlah tamu.
+- Jika tidak hadir, jumlah tamu harus nol.
+- Tolak malformed JSON dan content type tidak sesuai.
+- Google Service Account hanya server-side.
+- Demo mode harus berjalan tanpa credential.
+
+## Media dan kalender
+- Gunakan `next/image`, alt text, dan lazy loading.
+- Musik hanya diputar setelah interaksi pengguna.
+- Audio gagal tidak boleh membuat aplikasi crash.
+- Lightbox mendukung keyboard dan Escape.
+- Google Calendar URL harus encoded.
+- ICS harus memiliki format, escaping, dan header response yang benar.
+
+## Quality gate
+Setelah perubahan besar jalankan:
+
+```bash
+npm run lint
+npm run typecheck
+npm run test
+npm run build
+```
