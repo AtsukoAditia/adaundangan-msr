@@ -3,13 +3,13 @@ name: Release Demo Package
 on:
   push:
     tags:
-      - 'demo-v*'
+      - "demo-v*"
   workflow_dispatch:
     inputs:
       version:
-        description: 'Release version, example: demo-v0.1.0'
+        description: "Release version, example: demo-v0.1.0"
         required: true
-        default: 'demo-v0.1.0'
+        default: "demo-v0.1.0"
 
 permissions:
   contents: write
@@ -32,29 +32,22 @@ jobs:
           fi
 
       - name: Setup Node.js
-        if: hashFiles('package.json') != ''
         uses: actions/setup-node@v4
         with:
           node-version: 22
           cache: npm
 
       - name: Install dependencies
-        if: hashFiles('package-lock.json') != ''
         run: npm ci
 
-      - name: Install dependencies without lockfile
-        if: hashFiles('package.json') != '' && hashFiles('package-lock.json') == ''
-        run: npm install
-
-      - name: Validate app when available
-        if: hashFiles('package.json') != ''
+      - name: Validate app
         run: |
           npm run lint
           npm run typecheck
           npm run test
           npm run build
 
-      - name: Create demo package
+      - name: Create package
         run: |
           mkdir -p release
           zip -r "release/adaundangan-${{ steps.version.outputs.value }}.zip" . \

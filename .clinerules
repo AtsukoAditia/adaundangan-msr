@@ -1,59 +1,86 @@
 # AdaUndangan — CLINE Rules
 
-## Identitas proyek
+## Identitas
 
 - Nama aplikasi dan brand adalah `AdaUndangan`.
 - Nama package adalah `adaundangan`.
-- Bahasa UI dan dokumentasi utama adalah Bahasa Indonesia.
-- Nama variabel, fungsi, dan type memakai Bahasa Inggris.
+- Jangan menggunakan nama brand lain dalam source code, metadata, contoh, dan dokumentasi.
+- UI dan dokumentasi pengguna menggunakan Bahasa Indonesia.
+- Nama variabel, fungsi, type, interface, dan file kode menggunakan Bahasa Inggris.
 
-## Cara kerja
+## Proses kerja
 
-- Baca `PROJECT_CONTEXT.md`, `TASKS.md`, dan semua file `docs/` sebelum perubahan besar.
+- Baca `PROJECT_CONTEXT.md`, `TASKS.md`, dan seluruh `docs/` sebelum perubahan besar.
 - Perbarui `TASKS.md` selama pengerjaan.
 - Catat keputusan arsitektur di `PROJECT_CONTEXT.md`.
-- Jangan berhenti pada mockup atau pseudocode.
+- Jangan berhenti pada pseudocode, struktur kosong, atau mockup.
 - Jangan menyatakan selesai sebelum lint, typecheck, test, dan build diperiksa.
 
-## Keselamatan repository
+## Keselamatan workspace
 
-- Jangan menghapus file pengguna tanpa alasan jelas.
-- Jangan menjalankan perintah destruktif seperti `rm -rf`, `git reset --hard`, atau `git clean -fd` tanpa persetujuan eksplisit.
-- Jangan commit `.env`, private key, token, service-account JSON, atau credential apa pun.
-- Jangan membuat project nested jika root repository sudah menjadi project.
+- Jangan menghapus file pengguna tanpa alasan kuat.
+- Jangan menjalankan `rm -rf`, `git reset --hard`, `git clean -fd`, force push, atau perintah destruktif.
+- Jangan menampilkan isi `.env`, private key, token, atau service-account JSON.
+- Jangan membuat proyek Next.js bersarang jika root workspace adalah proyek.
+- Jangan mengganti arsitektur tanpa memperbarui dokumentasi.
 
-## Stack wajib
+## Stack
 
-- Next.js App Router.
-- React.
-- TypeScript strict.
-- Tailwind CSS.
-- Server Component secara default.
-- Client Component hanya untuk interaksi browser.
-- React Hook Form dan Zod untuk form.
-- Google APIs hanya server-side.
-- Vitest untuk unit test.
+- Next.js App Router, React, TypeScript strict, Tailwind CSS.
+- Server Component sebagai default.
+- Client Component hanya untuk state, event, browser API, audio, form, modal, dan animasi interaktif.
+- React Hook Form + Zod untuk form.
+- Google APIs hanya dari server.
+- Vitest untuk unit test; Playwright bila stabil.
 - npm sebagai package manager.
 
 ## Larangan
 
-- Jangan memakai CMS.
-- Jangan memakai WordPress.
-- Jangan memakai static export untuk production utama.
-- Jangan menyimpan secret di client bundle.
-- Jangan memakai `NEXT_PUBLIC_` untuk secret.
-- Jangan render input tamu sebagai HTML.
+- Tanpa CMS, WordPress, Firebase, Supabase, database SQL, MongoDB, dan jQuery.
+- Jangan gunakan static export karena API route diperlukan.
+- Jangan simpan secret di source code atau prefix `NEXT_PUBLIC_`.
+- Jangan gunakan `dangerouslySetInnerHTML` untuk input pengguna.
+- Jangan merender ucapan sebagai HTML.
+- Jangan menghapus test agar build lolos.
 - Jangan menonaktifkan TypeScript strict.
+- Hindari `any`; jika terpaksa, jelaskan alasannya.
 
-## Data undangan
+## Arsitektur data
 
 - Data undangan berada di `src/data/invitations/`.
-- Setiap pasangan punya satu file konfigurasi.
-- Gunakan ISO datetime dengan timezone offset, contoh `2027-01-24T08:00:00+07:00`.
-- Gunakan helper `getInvitationBySlug`.
-- Section opsional hanya tampil jika data tersedia dan fitur aktif.
+- Satu pasangan menggunakan satu file konfigurasi.
+- Gunakan type/schema kuat dan ISO datetime dengan timezone offset.
+- Gunakan `getInvitationBySlug` dan `notFound()`.
+- Section opsional hanya muncul jika aktif dan datanya tersedia.
+- Theme tidak boleh menduplikasi business logic.
 
-## Validasi akhir
+## Brand dan UI
+
+- Burgundy `#7B1D2A`, Gold `#D4AF37`, Ivory `#FFFDF7`.
+- Mobile-first, aksesibel, dan tanpa horizontal overflow.
+- Hormati `prefers-reduced-motion`.
+- Sediakan fallback text logo `AdaUndangan`.
+
+## RSVP dan keamanan
+
+- Validasi client dan server.
+- Nilai `Approved` ditentukan server dan default `FALSE`.
+- Gunakan honeypot, batas panjang input, dan batas jumlah tamu.
+- Jika tidak hadir, jumlah tamu harus nol.
+- Tolak malformed JSON dan content type tidak sesuai.
+- Google Service Account hanya server-side.
+- Demo mode harus berjalan tanpa credential.
+
+## Media dan kalender
+
+- Gunakan `next/image`, alt text, dan lazy loading.
+- Musik hanya diputar setelah interaksi pengguna.
+- Audio gagal tidak boleh membuat aplikasi crash.
+- Lightbox mendukung keyboard dan Escape.
+- Google Calendar URL harus encoded.
+- ICS harus memiliki format, escaping, dan header response yang benar.
+
+## Quality gate
 
 Setelah perubahan besar jalankan:
 

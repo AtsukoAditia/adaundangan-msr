@@ -1,0 +1,12 @@
+{
+  "recommendations": [
+    "saoudrizwan.claude-dev",
+    "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode",
+    "bradlc.vscode-tailwindcss",
+    "ms-playwright.playwright",
+    "yoavbls.pretty-ts-errors",
+    "usernamehw.errorlens",
+    "eamodio.gitlens"
+  ]
+}
