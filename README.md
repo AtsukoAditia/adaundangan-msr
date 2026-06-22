@@ -32,8 +32,8 @@ Platform website undangan pernikahan digital tanpa CMS. Satu deployment mendukun
 - Next.js 15 (App Router)
 - React 19
 - TypeScript (strict)
-- Tailwind CSS 4
-- Framer Motion
+- Tailwind CSS 3.4
+- Motion
 - Lucide React
 - React Hook Form + Zod
 - Google Sheets API
@@ -108,6 +108,15 @@ npm run build
 npm start
 ```
 
+## Validasi
+
+```bash
+npm run lint
+npm run typecheck
+npm run test
+npm run build
+```
+
 ## Demo Mode
 
 Saat `DEMO_MODE=true` (default):
@@ -123,7 +132,7 @@ Saat `DEMO_MODE=true` (default):
 2. Header kolom: `ID | Timestamp | Slug | Guest Name | Attendance | Guest Count | Message | Approved`.
 3. Buat Service Account di Google Cloud Console.
 4. Aktifkan Google Sheets API.
-5. Download JSON key, salin `client_email` dan `private_key` ke `.env.local`.
+5. Download JSON key, salin `client_email` dan `private_key` ke `.env.local` atau Vercel Environment Variables.
 6. Share spreadsheet ke email service account dengan role Editor.
 
 Lihat `docs/04-GOOGLE_SHEETS_SETUP.md` untuk panduan lengkap.
@@ -152,25 +161,18 @@ Set `mapsUrl` pada setiap event di konfigurasi undangan dengan URL Google Maps.
 
 ## Mengganti Nomor WhatsApp
 
-Set `NEXT_PUBLIC_WHATSAPP_NUMBER` dan `NEXT_PUBLIC_WHATSAPP_MESSAGE` di `.env.local`.
+Set `NEXT_PUBLIC_WHATSAPP_NUMBER` dan `NEXT_PUBLIC_WHATSAPP_MESSAGE` di `.env.local` atau Vercel Environment Variables.
 
 ## Kalender
 
 - **Google Calendar**: Tombol otomatis membuat URL Google Calendar dari data acara.
 - **ICS Download**: Route `/api/calendar/[slug]` menghasilkan file `.ics` untuk Apple Calendar dan Outlook.
 
-## Testing
+## GitHub Actions
 
-```bash
-# Unit tests
-npm run test
-
-# Type checking
-npm run typecheck
-
-# Lint
-npm run lint
-```
+- **CI**: menjalankan lint, typecheck, test, dan build pada push/PR.
+- **Release Demo Package**: membuat ZIP demo/source melalui tag `demo-v*` atau manual workflow.
+- **Vercel Production Deploy**: deploy production manual menggunakan Vercel CLI dan GitHub Secrets.
 
 ## Vercel Deployment
 
@@ -201,7 +203,7 @@ Browser modern memblokir autoplay. Musik hanya berputar setelah klik "Buka Undan
 
 ### Halaman 404
 
-Pastikan slug undangan sesuai dengan nama file di `src/data/invitations/` dan `published: true`.
+Pastikan slug undangan sesuai dengan nama file di `src/data/invitations/` dan `isPublished: true`.
 
 ## Keamanan Credential
 
