@@ -1,0 +1,73 @@
+name: Release Demo Package
+
+on:
+  push:
+    tags:
+      - 'demo-v*'
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Release version, example: demo-v0.1.0'
+        required: true
+        default: 'demo-v0.1.0'
+
+permissions:
+  contents: write
+
+jobs:
+  package:
+    name: Build and release demo package
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Resolve version
+        id: version
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "value=${{ inputs.version }}" >> "$GITHUB_OUTPUT"
+          else
+            echo "value=${GITHUB_REF_NAME}" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Validate app
+        run: |
+          npm run lint
+          npm run typecheck
+          npm run test
+          npm run build
+
+      - name: Create package
+        run: |
+          mkdir -p release
+          zip -r "release/adaundangan-${{ steps.version.outputs.value }}.zip" . \
+            -x '.git/*' \
+            -x 'node_modules/*' \
+            -x '.next/cache/*' \
+            -x '.env' \
+            -x '.env.*' \
+            -x '*service-account*.json' \
+            -x '*credentials*.json'
+
+      - name: Publish GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.version.outputs.value }}
+          name: AdaUndangan Demo ${{ steps.version.outputs.value }}
+          body: |
+            Paket demo/source AdaUndangan.
+
+            Catatan:
+            - GitHub Releases dipakai untuk distribusi ZIP.
+            - Demo live tetap disarankan menggunakan Vercel.
+          files: release/*.zip
