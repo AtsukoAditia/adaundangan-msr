@@ -1,0 +1,51 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "AdaUndangan: Dev",
+      "type": "shell",
+      "command": "npm run dev",
+      "isBackground": true,
+      "problemMatcher": [],
+      "group": "build"
+    },
+    {
+      "label": "AdaUndangan: Validate",
+      "type": "shell",
+      "command": "npm run lint && npm run typecheck && npm run test && npm run build",
+      "problemMatcher": [],
+      "group": {
+        "kind": "test",
+        "isDefault": true
+      }
+    },
+    {
+      "label": "AdaUndangan: Lint",
+      "type": "shell",
+      "command": "npm run lint",
+      "problemMatcher": [
+        "$eslint-stylish"
+      ]
+    },
+    {
+      "label": "AdaUndangan: Typecheck",
+      "type": "shell",
+      "command": "npm run typecheck",
+      "problemMatcher": [
+        "$tsc"
+      ]
+    },
+    {
+      "label": "AdaUndangan: Test",
+      "type": "shell",
+      "command": "npm run test",
+      "problemMatcher": []
+    },
+    {
+      "label": "AdaUndangan: Build",
+      "type": "shell",
+      "command": "npm run build",
+      "problemMatcher": []
+    }
+  ]
+}

@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600">
+  <rect width="800" height="600" fill="#f9e9eb"/>
+  <rect x="300" y="220" width="200" height="160" rx="8" fill="#7B1D2A" opacity="0.3"/>
+  <text x="400" y="320" text-anchor="middle" font-family="Georgia,serif" font-size="20" fill="#7B1D2A">Foto Hero Demo</text>
+</svg>
