@@ -5,9 +5,7 @@ const nextConfig: NextConfig = {
     remotePatterns: [],
     formats: ["image/avif", "image/webp"],
   },
-  experimental: {
-    typedRoutes: false,
-  },
+  typedRoutes: false,
 };
 
 export default nextConfig;
