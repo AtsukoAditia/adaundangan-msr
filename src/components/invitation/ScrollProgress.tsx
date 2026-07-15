@@ -6,7 +6,7 @@ interface Props {
   color?: string;
 }
 
-export default function ScrollProgress({ color }: Props) {
+export default function ScrollProgress({ color: _color }: Props) {
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, {
     stiffness: 100,
@@ -17,11 +17,7 @@ export default function ScrollProgress({ color }: Props) {
   return (
     <motion.div
       className="scroll-progress"
-      style={{
-        scaleX,
-        background:
-          color ?? "linear-gradient(90deg, #7B1D2A, #D4AF37)",
-      }}
+      style={{ scaleX }}
     />
   );
 }

@@ -1,12 +1,20 @@
 import type { InvitationConfig } from "@/types/invitation";
 import demoDanDemo from "./demo-dan-demo";
 import lancelotOdette from "./lancelot-odette";
+import modernMinimalist from "./modern-minimalist";
+import romanticFloral from "./romantic-floral";
+import luxuryGold from "./luxury-gold";
+import rusticNatural from "./rustic-natural";
+import boldContemporary from "./bold-contemporary";
 
-// Registry of all invitation configurations, keyed by slug.
-// To add a new invitation: create a new file in this folder and register it here.
 const invitations: Record<string, InvitationConfig> = {
   [demoDanDemo.slug]: demoDanDemo,
   [lancelotOdette.slug]: lancelotOdette,
+  [modernMinimalist.slug]: modernMinimalist,
+  [romanticFloral.slug]: romanticFloral,
+  [luxuryGold.slug]: luxuryGold,
+  [rusticNatural.slug]: rusticNatural,
+  [boldContemporary.slug]: boldContemporary,
 };
 
 export function getInvitationBySlug(slug: string): InvitationConfig | null {

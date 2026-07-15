@@ -19,6 +19,7 @@ import SectionDivider from "@/components/invitation/SectionDivider";
 import ShareButtons from "@/components/invitation/ShareButtons";
 import StorySection from "@/components/invitation/StorySection";
 import { getGuestName } from "@/lib/utils";
+import { THEMES } from "@/config/themes";
 import type { InvitationConfig } from "@/types/invitation";
 import { useCallback, useEffect, useState } from "react";
 
@@ -38,6 +39,15 @@ export default function InvitationPage({ config }: Props) {
     document.body.style.overflow = isOpen ? "" : "hidden";
     return () => { document.body.style.overflow = ""; };
   }, [isOpen]);
+
+  // Inject theme CSS variables
+  useEffect(() => {
+    const theme = THEMES[config.theme] ?? THEMES.elegant;
+    document.documentElement.style.cssText = theme.css;
+    return () => {
+      document.documentElement.style.cssText = "";
+    };
+  }, [config.theme]);
 
   const coupleName = `${config.couple.groom.name} & ${config.couple.bride.name}`;
   const siteUrl = typeof window !== "undefined" ? window.location.href : "";
