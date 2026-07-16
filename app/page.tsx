@@ -3,6 +3,9 @@ import Navbar from "@/components/landing/Navbar";
 import HeroSection from "@/components/landing/HeroSection";
 import FeaturesSection from "@/components/landing/FeaturesSection";
 import PricingSection from "@/components/landing/PricingSection";
+import OrderStepsSection from "@/components/landing/OrderStepsSection";
+import TestimonialsSection from "@/components/landing/TestimonialsSection";
+import FAQSection from "@/components/landing/FAQSection";
 import Footer from "@/components/landing/Footer";
 import { SITE_NAME, SITE_URL } from "@/config/site";
 
@@ -19,6 +22,9 @@ export default function HomePage() {
       <HeroSection />
       <FeaturesSection />
       <PricingSection />
+      <OrderStepsSection />
+      <TestimonialsSection />
+      <FAQSection />
       <Footer />
     </main>
   );

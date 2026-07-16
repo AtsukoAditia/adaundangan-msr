@@ -175,19 +175,20 @@ export const navLinks = [
   { label: "FAQ", href: "#faq" },
 ];
 
-export const WHATSAPP_NUMBER = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "";
+export const WHATSAPP_NUMBER =
+  process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "6281234567890";
 export const WHATSAPP_MESSAGE = encodeURIComponent(
   process.env.NEXT_PUBLIC_WHATSAPP_MESSAGE ||
     "Halo Admin AdaUndangan, saya ingin bertanya tentang undangan digital.",
 );
-export const WHATSAPP_LINK = WHATSAPP_NUMBER
-  ? `https://wa.me/${WHATSAPP_NUMBER}?text=${WHATSAPP_MESSAGE}`
-  : "#";
+export const WHATSAPP_LINK = `https://wa.me/${WHATSAPP_NUMBER}?text=${WHATSAPP_MESSAGE}`;
 
 // Aliases for backward compatibility with landing components
 export const LANDING_FEATURES = features;
 export const PRICING_PACKAGES = packages;
 export const NAV_LINKS = navLinks;
+export const ORDER_STEPS = orderSteps;
+export const TESTIMONIALS = testimonials;
 
 export const faqs: FaqItem[] = [
   {
@@ -216,3 +217,5 @@ export const faqs: FaqItem[] = [
       "Ya. Kami tidak menampilkan data sensitif tamu dan ucapan hanya tampil setelah Anda menyetujuinya.",
   },
 ];
+
+export const FAQS = faqs;
