@@ -2,14 +2,14 @@
 
 import { LANDING_FEATURES } from "@/config/landing";
 import {
-  Calendar,
-  Clock,
+  CalendarDays,
+  Gift,
   Heart,
-  Image,
+  Images,
   MapPin,
+  MessageSquare,
   Music,
-  Shield,
-  Smartphone,
+  UserCheck,
 } from "lucide-react";
 import { motion } from "motion/react";
 import ScrollReveal from "@/components/animation/ScrollReveal";
@@ -17,13 +17,13 @@ import StaggerChildren, { StaggerItem } from "@/components/animation/StaggerChil
 
 const iconMap: Record<string, React.ElementType> = {
   Heart,
-  Smartphone,
-  Calendar,
-  Image,
+  UserCheck,
   Music,
-  Shield,
+  CalendarDays,
   MapPin,
-  Clock,
+  MessageSquare,
+  Images,
+  Gift,
 };
 
 export default function FeaturesSection() {
