@@ -9,6 +9,7 @@ import { useCallback, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import type { z } from "zod";
+import ScrollReveal from "@/components/animation/ScrollReveal";
 
 type FormInput = z.input<typeof rsvpSchema>;
 const TOTAL_STEPS = 4;
@@ -361,5 +362,3 @@ interface Props {
   slug: string;
   maxGuestCount: number;
 }
-
-import ScrollReveal from "@/components/animation/ScrollReveal";

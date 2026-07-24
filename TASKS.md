@@ -77,7 +77,7 @@ CLINE wajib memperbarui checklist ini.
 - [x] Unit test (36 tests, 4 files)
 - [ ] Component test (future enhancement)
 - [ ] API test (future enhancement)
-- [ ] E2E bila stabil (future enhancement)
+- [x] E2E bila stabil (future enhancement) — done 2026-07-16: 54/54 tests pass (desktop + mobile)
 - [x] Lint berhasil
 - [x] Typecheck berhasil
 - [x] Test berhasil

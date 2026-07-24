@@ -1,5 +1,6 @@
 import type { InvitationConfig } from "@/types/invitation";
 import demoDanDemo from "./demo-dan-demo";
+import demoElegant from "./demo-elegant";
 import lancelotOdette from "./lancelot-odette";
 import modernMinimalist from "./modern-minimalist";
 import romanticFloral from "./romantic-floral";
@@ -9,6 +10,7 @@ import boldContemporary from "./bold-contemporary";
 
 const invitations: Record<string, InvitationConfig> = {
   [demoDanDemo.slug]: demoDanDemo,
+  [demoElegant.slug]: demoElegant,
   [lancelotOdette.slug]: lancelotOdette,
   [modernMinimalist.slug]: modernMinimalist,
   [romanticFloral.slug]: romanticFloral,

@@ -18,6 +18,8 @@ import ScrollProgress from "@/components/invitation/ScrollProgress";
 import SectionDivider from "@/components/invitation/SectionDivider";
 import ShareButtons from "@/components/invitation/ShareButtons";
 import StorySection from "@/components/invitation/StorySection";
+import { ThemeProvider } from "@/components/providers/ThemeProvider";
+import { getThemeByTemplate } from "@/lib/theme/registry";
 import { getGuestName } from "@/lib/utils";
 import { THEMES } from "@/config/themes";
 import type { InvitationConfig } from "@/types/invitation";
@@ -28,6 +30,7 @@ interface Props {
 }
 
 export default function InvitationPage({ config }: Props) {
+  const theme = getThemeByTemplate(config.theme ?? "elegant");
   const [isOpen, setIsOpen] = useState(false);
   const guestName = getGuestName();
 
@@ -53,7 +56,7 @@ export default function InvitationPage({ config }: Props) {
   const siteUrl = typeof window !== "undefined" ? window.location.href : "";
 
   return (
-    <>
+    <ThemeProvider theme={theme}>
       {/* Progress bar — always visible after open */}
       {isOpen && <ScrollProgress />}
 
@@ -142,6 +145,6 @@ export default function InvitationPage({ config }: Props) {
           />
         </main>
       )}
-    </>
+    </ThemeProvider>
   );
 }

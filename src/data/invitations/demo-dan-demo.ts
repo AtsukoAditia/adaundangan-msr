@@ -9,7 +9,7 @@ const demoDanDemo: InvitationConfig = {
     title: "Pernikahan Demo & Demo — AdaUndangan",
     description:
       "Kami mengundang Anda untuk bersama kami merayakan hari bahagia pernikahan kami.",
-    ogImage: "/images/invitations/demo-og.jpg",
+    ogImage: "/images/invitations/demo-og.svg",
     noIndex: false,
   },
 

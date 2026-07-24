@@ -1,5 +1,3 @@
-import type { ThemeKey } from "@/config/themes";
-
 // Core types for AdaUndangan invitation configurations
 
 export interface Person {
@@ -97,7 +95,7 @@ export interface ClosingConfig {
 export interface InvitationConfig {
   slug: string;
   isPublished: boolean;
-  theme: ThemeKey;
+  theme: "elegant" | "minimal" | "floral" | "modern" | "rustic";
   metadata: InvitationMetadata;
   couple: {
     bride: Person;

@@ -83,11 +83,7 @@ export default function GuestBook({ slug, enabled }: Props) {
     if (enabled) fetchEntries();
   }, [enabled, fetchEntries]);
 
-  useEffect(() => {
-    if (!loading && entries.length > 0 && bottomRef.current && typeof bottomRef.current.scrollIntoView === "function") {
-      bottomRef.current.scrollIntoView({ behavior: "smooth", block: "nearest" });
-    }
-  }, [loading, entries.length]);
+
 
   if (!enabled) return null;
 

@@ -2,42 +2,34 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ─── Theme system CSS custom properties ────────────── */
+/* Default: elegant theme.  Other themes override via   */
+/* generateCSSVars() at runtime on a scoped element.     */
 :root {
-  --background: rgb(var(--theme-bg-rgb, 255, 253, 247));
-}
+  /* Colour tokens */
+  --color-primary: #b08d57;
+  --color-secondary: #d4c5a9;
+  --color-accent: #8b7355;
+  --color-background: #faf8f5;
+  --color-text: #2c2c2c;
+  --color-muted: #8a8a8a;
 
-/* Default theme (elegant) fallback */
-:root,
-[data-theme="elegant"] {
-  --theme-primary-rgb: 123, 29, 42;
-  --theme-primary-50-rgb: 249, 233, 235;
-  --theme-primary-100-rgb: 240, 197, 203;
-  --theme-primary-200-rgb: 231, 154, 164;
-  --theme-primary-300-rgb: 217, 110, 124;
-  --theme-primary-400-rgb: 204, 74, 90;
-  --theme-primary-500-rgb: 123, 29, 42;
-  --theme-primary-600-rgb: 106, 25, 36;
-  --theme-primary-700-rgb: 89, 20, 30;
-  --theme-primary-800-rgb: 72, 15, 24;
-  --theme-primary-900-rgb: 55, 11, 18;
-  --theme-accent-rgb: 212, 175, 55;
-  --theme-accent-50-rgb: 253, 248, 232;
-  --theme-accent-100-rgb: 249, 238, 191;
-  --theme-accent-200-rgb: 245, 226, 147;
-  --theme-accent-300-rgb: 240, 213, 103;
-  --theme-accent-400-rgb: 235, 201, 62;
-  --theme-accent-500-rgb: 212, 175, 55;
-  --theme-accent-600-rgb: 184, 149, 47;
-  --theme-accent-700-rgb: 155, 123, 39;
-  --theme-accent-800-rgb: 127, 98, 31;
-  --theme-accent-900-rgb: 98, 73, 23;
-  --theme-bg-rgb: 255, 253, 247;
-  --theme-bg-50-rgb: 255, 253, 247;
-  --theme-bg-100-rgb: 254, 251, 238;
-  --theme-bg-200-rgb: 253, 247, 224;
-  --theme-bg-300-rgb: 252, 243, 210;
-  --theme-bg-400-rgb: 251, 239, 191;
-  --theme-bg-500-rgb: 249, 232, 160;
+  /* Typography tokens */
+  --font-heading: "Playfair Display", Georgia, serif;
+  --font-body: "Lato", "Helvetica Neue", Arial, sans-serif;
+  --font-script: "Great Vibes", cursive;
+
+  /* Layout tokens */
+  --radius: 12px;
+  --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  --spacing: 1rem;
+
+  /* Legacy compat (keep existing vars) */
+  --background: #FFFDF7;
+  --foreground: #2a1a1c;
+  --burgundy: #7B1D2A;
+  --gold: #D4AF37;
+  --ivory: #FFFDF7;
 }
 
 html {
@@ -46,7 +38,7 @@ html {
 
 body {
   background: var(--background);
-  color: rgb(var(--theme-primary-rgb, 42, 26, 28));
+  color: var(--foreground);
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
 }
@@ -61,25 +53,25 @@ body {
   width: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: rgb(var(--theme-bg-rgb, 255, 253, 247));
+  background: var(--ivory);
 }
 ::-webkit-scrollbar-thumb {
-  background: rgb(var(--theme-accent-rgb, 212, 175, 55));
+  background: #D4AF37;
   border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: rgb(var(--theme-accent-600-rgb, 184, 149, 47));
+  background: #b8952f;
 }
 
 /* ─── Text selection ────────────────────────────────── */
 ::selection {
-  background: rgb(var(--theme-accent-rgb, 212, 175, 55));
-  color: rgb(var(--theme-primary-rgb, 123, 29, 42));
+  background: #D4AF37;
+  color: #7B1D2A;
 }
 
 /* ─── Focus visible ─────────────────────────────────── */
 :focus-visible {
-  outline: 2px solid rgb(var(--theme-accent-rgb, 212, 175, 55));
+  outline: 2px solid #D4AF37;
   outline-offset: 3px;
 }
 
@@ -92,7 +84,7 @@ body {
   font-family: var(--font-cormorant), Georgia, serif;
   font-size: 1.875rem;
   font-weight: 700;
-  color: rgb(var(--theme-primary-rgb, 123, 29, 42));
+  color: #7B1D2A;
 }
 @media (min-width: 768px) {
   .section-title {
@@ -101,7 +93,7 @@ body {
 }
 .section-subtitle {
   font-size: 0.875rem;
-  color: rgba(var(--theme-primary-rgb, 123, 29, 42), 0.6);
+  color: rgb(123 29 42 / 0.6);
   max-width: 28rem;
   margin: 0 auto;
   text-align: center;
@@ -110,7 +102,7 @@ body {
 /* ─── Glass card ────────────────────────────────────── */
 .glass-card {
   @apply bg-white/80 backdrop-blur-md border border-white/50;
-  box-shadow: 0 4px 24px rgba(var(--theme-primary-rgb), 0.08);
+  box-shadow: 0 4px 24px rgba(123, 29, 42, 0.08);
 }
 
 .glass-card-dark {
@@ -153,7 +145,7 @@ body {
   100% { background-position: 200% center; }
 }
 .shimmer-gold {
-  background: linear-gradient(90deg, rgb(var(--theme-accent-rgb)) 0%, rgb(var(--theme-accent-300-rgb)) 25%, rgb(var(--theme-accent-rgb)) 50%, rgb(var(--theme-accent-300-rgb)) 75%, rgb(var(--theme-accent-rgb)) 100%);
+  background: linear-gradient(90deg, #D4AF37 0%, #F0D78C 25%, #D4AF37 50%, #F0D78C 75%, #D4AF37 100%);
   background-size: 200% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -176,8 +168,8 @@ body {
 
 /* ─── Pulse glow ───────────────────────────────────── */
 @keyframes pulse-glow {
-  0%, 100% { box-shadow: 0 0 8px 2px rgba(var(--theme-accent-rgb), 0.3); }
-  50% { box-shadow: 0 0 20px 6px rgba(var(--theme-accent-rgb), 0.5); }
+  0%, 100% { box-shadow: 0 0 8px 2px rgba(212, 175, 55, 0.3); }
+  50% { box-shadow: 0 0 20px 6px rgba(212, 175, 55, 0.5); }
 }
 .pulse-gold {
   animation: pulse-glow 2.5s ease-in-out infinite;
@@ -203,10 +195,10 @@ body {
 
 /* ─── Gradient overlay sections ─────────────────────── */
 .section-gradient-top {
-  background: linear-gradient(to bottom, rgba(var(--theme-bg-rgb), 0.95) 0%, transparent 100%);
+  background: linear-gradient(to bottom, rgba(255, 253, 247, 0.95) 0%, transparent 100%);
 }
 .section-gradient-bottom {
-  background: linear-gradient(to top, rgba(var(--theme-bg-rgb), 0.95) 0%, transparent 100%);
+  background: linear-gradient(to top, rgba(255, 253, 247, 0.95) 0%, transparent 100%);
 }
 
 /* ─── Flip card for countdown ───────────────────────── */
@@ -266,7 +258,7 @@ body {
   top: 0;
   left: 0;
   height: 3px;
-  background: linear-gradient(90deg, rgb(var(--theme-primary-rgb)), rgb(var(--theme-accent-rgb)));
+  background: linear-gradient(90deg, #7B1D2A, #D4AF37);
   z-index: 100;
   transform-origin: left;
 }
@@ -283,7 +275,7 @@ body {
   }
   .shimmer-gold {
     animation: none;
-    background: rgb(var(--theme-accent-rgb));
-    -webkit-text-fill-color: rgb(var(--theme-accent-rgb));
+    background: #D4AF37;
+    -webkit-text-fill-color: #D4AF37;
   }
 }
