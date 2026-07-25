@@ -1,12 +1,12 @@
 import type { InvitationConfig } from "@/types/invitation";
 
-const demoDanDemo: InvitationConfig = {
-  slug: "demo-dan-demo",
+const demoElegant: InvitationConfig = {
+  slug: "demo-elegant",
   isPublished: true,
   theme: "elegant",
 
   metadata: {
-    title: "Pernikahan Demo & Demo — AdaUndangan",
+    title: "Pernikahan Rama & Sinta — Elegant",
     description:
       "Kami mengundang Anda untuk bersama kami merayakan hari bahagia pernikahan kami.",
     ogImage: "/images/invitations/demo-og.svg",
@@ -49,8 +49,8 @@ const demoDanDemo: InvitationConfig = {
     {
       id: "akad",
       title: "Akad Nikah",
-      startAt: "2027-12-12T08:00:00+07:00",
-      endAt: "2027-12-12T10:00:00+07:00",
+      startAt: "2027-01-24T08:00:00+07:00",
+      endAt: "2027-01-24T10:00:00+07:00",
       venue: "Masjid Al-Falah",
       address: "Jl. Contoh No. 1, Kelurahan Demo, Kota Fiktif, Jawa Tengah",
       mapsUrl:
@@ -64,8 +64,8 @@ const demoDanDemo: InvitationConfig = {
     {
       id: "resepsi",
       title: "Resepsi Pernikahan",
-      startAt: "2027-12-12T11:00:00+07:00",
-      endAt: "2027-12-12T15:00:00+07:00",
+      startAt: "2027-01-24T11:00:00+07:00",
+      endAt: "2027-01-24T15:00:00+07:00",
       venue: "Gedung Serbaguna Demo",
       address: "Jl. Contoh No. 2, Kelurahan Demo, Kota Fiktif, Jawa Tengah",
       mapsUrl:
@@ -97,7 +97,7 @@ const demoDanDemo: InvitationConfig = {
         "Dalam suasana hangat keluarga, Rama melamar Sinta dengan penuh ketulusan. Sebuah momen yang tidak akan pernah kami lupakan seumur hidup.",
     },
     {
-      date: "Desember 2027",
+      date: "Januari 2027",
       title: "Hari Bahagia",
       description:
         "Dan kini, kami siap melangkah ke babak baru kehidupan bersama, dengan doa dan restu dari seluruh keluarga dan sahabat tercinta.",
@@ -152,12 +152,12 @@ const demoDanDemo: InvitationConfig = {
     enabled: true,
     bankAccounts: [
       {
-        bankName: "Bank Demo Indonesia",
+        bankName: "Bank Central Asia",
         accountNumber: "1234567890",
         accountName: "Rama Putra Santoso",
       },
       {
-        bankName: "Bank Demo Nasional",
+        bankName: "Bank Mandiri",
         accountNumber: "0987654321",
         accountName: "Sinta Ayu Maharani",
       },
@@ -167,10 +167,10 @@ const demoDanDemo: InvitationConfig = {
     note: "Kehadiran dan doa restu Anda adalah hadiah terbaik bagi kami. Namun jika ingin memberikan hadiah, berikut informasinya.",
   },
 
-    rsvp: {
+  rsvp: {
     enabled: true,
-    maxGuestCount: 5,
-    deadline: "2027-12-05",
+    maxGuestCount: 2,
+    deadline: "2027-01-17",
   },
 
   guestBook: {
@@ -185,4 +185,4 @@ const demoDanDemo: InvitationConfig = {
   },
 };
 
-export default demoDanDemo;
+export default demoElegant;
